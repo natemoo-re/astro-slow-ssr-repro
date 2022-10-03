@@ -2,6 +2,7 @@
 import BasePage from "./BasePage.astro";
 import Breadcrumb from "carbon-components-svelte/src/Breadcrumb/Breadcrumb.svelte";
 import BreadcrumbItem from "carbon-components-svelte/src/Breadcrumb/BreadcrumbItem.svelte";
+import { getLanguageRespectingPath } from "../localization";
 
 export interface Props {
   content: {
@@ -13,7 +14,6 @@ export interface Props {
   };
 }
 
-console.log(JSON.stringifiy(Astro.props));
 let language = await getLanguageRespectingPath(Astro.params);
 const {
   content: { title, description, pubDate, updatedDate, heroImage },

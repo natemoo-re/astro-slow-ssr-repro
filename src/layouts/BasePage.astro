@@ -65,7 +65,7 @@ let languages = await getLanguages();
               <InlineNotification hideCloseButton kind="warning">
                 <strong slot="title">{language?.getByKey("warning")}:</strong>
                 <strong slot="subtitle"
-                  >{language.getByKey("javascriptNotEnabled")}</strong
+                  >{language?.getByKey("javascriptNotEnabled")}</strong
                 >
               </InlineNotification>
             </noscript>

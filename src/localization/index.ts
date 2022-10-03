@@ -13,7 +13,8 @@ async function getFallbackLanguage(): Promise<Language> {
 }
 
 export async function getLanguage(request: Request): Promise<Language | undefined> {
-    console.log(JSON.stringify(request.headers.get("Accept-Language")));
+    console.log('get language');
+    // console.log(JSON.stringify(request.headers.get("Accept-Language")));
     if (request.headers.has("Accept-Language")) {
         for (let language of request.headers.get("Accept-Language")!.split(',')) {
             // ' en-US' -> 'en-US'
@@ -44,7 +45,7 @@ export async function getLanguage(request: Request): Promise<Language | undefine
     return undefined;
 }
 
-export async function getLanguageRespectingPath(params: Params): Promise<Language | undefined> {
+export async function getLanguageRespectingPath(params: Params): Promise<Language> {
     let languageIdentifier = params.language;
     if (languageIdentifier == undefined) {
         return await getFallbackLanguage();
@@ -59,5 +60,5 @@ export async function getLanguageRespectingPath(params: Params): Promise<Languag
     if (langResult.length > 0) {
         return langResult[0];
     }
-    return undefined;
+    return await getFallbackLanguage();
 }
